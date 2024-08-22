@@ -199,8 +199,8 @@ class VideoReader:
 class FaceExtractor:
     def __init__(self, video_read_fn):
         self.video_read_fn = video_read_fn
-        self.detector = MTCNN(margin=0, thresholds=[0.7, 0.8, 0.8], device="cpu")
-        # self.detector = MTCNN(margin=0, thresholds=[0.7, 0.8, 0.8], device="cuda")
+        # self.detector = MTCNN(margin=0, thresholds=[0.7, 0.8, 0.8], device="cpu")
+        self.detector = MTCNN(margin=0, thresholds=[0.7, 0.8, 0.8], device="cuda")
 
     def process_videos(self, input_dir, filenames, video_idxs):
         videos_read = []
@@ -323,8 +323,8 @@ def predict_on_video(face_extractor, video_path, batch_size, input_size, models,
                     else:
                         pass
             if n > 0:
-                x = torch.tensor(x, device="cpu").float()
-                # x = torch.tensor(x, device="cuda").float()
+                # x = torch.tensor(x, device="cpu").float()
+                x = torch.tensor(x, device="cuda").float()
                 # Preprocess the images.
                 x = x.permute((0, 3, 1, 2))
                 for i in range(len(x)):

@@ -33,8 +33,8 @@ class VideoFaceDetector(ABC):
 
 class FacenetDetector(VideoFaceDetector):
 
-    def __init__(self, device="cpu") -> None:
-    # def __init__(self, device="cuda:0") -> None:
+    # def __init__(self, device="cpu") -> None:
+    def __init__(self, device="cuda:0") -> None:
         super().__init__()
         self.detector = MTCNN(margin=0,thresholds=[0.85, 0.95, 0.95], device=device)
 
